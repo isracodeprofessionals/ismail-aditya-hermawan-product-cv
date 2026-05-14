@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ismail Aditya Hermawan — Product Management Lead</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0a0a0a;
+      --dark:    #111111;
+      --mid:     #333333;
+      --muted:   #666666;
+      --border:  #222222;
+      --light:   #f4f4f4;
+      --white:   #ffffff;
+      --accent:  #ffffff;
+      --serif:   'Georgia', 'Times New Roman', serif;
+      --sans:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--light);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--mid); border-radius: 2px; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+
+    .hero-number {
+      font-family: var(--serif);
+      font-size: clamp(6rem, 18vw, 18rem);
+      line-height: 0.85;
+      color: rgba(255,255,255,0.04);
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 7vw, 7rem);
+      line-height: 1.0;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-name span {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .hero-title {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      max-width: 44rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .hero-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 4rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 3rem;
+      background: var(--border);
+    }
+
+    /* ── Section Base ── */
+    section { padding: 7rem 4rem; }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .section-rule {
+      width: 3rem;
+      height: 1px;
+      background: var(--white);
+      margin: 2rem 0;
+    }
+
+    /* ── Summary ── */
+    #summary {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+    }
+
+    .summary-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .summary-text {
+      font-size: 1.25rem;
+      line-height: 1.75;
+      color: #cccccc;
+      font-family: var(--serif);
+      font-style: italic;
+    }
+
+    .summary-text strong {
+      color: var(--white);
+      font-style: normal;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .stat-item {
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ── Expertise ── */
+    #expertise {
+      border-top: 1px solid var(--border);
+    }
+
+    .expertise-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .expertise-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .expertise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+
+    .tag:hover {
+      background: var(--white);
+      border-color: var(--white);
+      color: var(--black);
+    }
+
+    .industries {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    .industry-item {
+      background: var(--black);
+      padding: 1.75rem 2rem;
+      transition: background 0.25s;
+    }
+
+    .industry-item:hover { background: var(--dark); }
+
+    .industry-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: rgba(255,255,255,0.15);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .industry-name {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+
+    /* ── Experience ── */
+    #experience {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+    }
+
+    .experience-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 5rem;
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 0 0 4.5rem 0;
+      position: relative;
+    }
+
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border: 1px solid var(--white);
+      background: var(--dark);
+    }
+
+    .exp-meta {
+      padding-left: 2rem;
+    }
+
+    .exp-period {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-company {
+      font-size: 0.78rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .exp-current {
+      display: inline-block;
+      background: var(--white);
+      color: var(--black);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--white);
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .exp-bullets li {
+      font-size: 0.875rem;
+      color: #aaaaaa;
+      line-height: 1.65;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    .exp-bullets li strong {
+      color: var(--white);
+    }
+
+    .achievement-box {
+      margin-top: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .achievement-box p {
+      font-size: 0.8rem;
+      color: #999;
+      font-style: italic;
+    }
+
+    .achievement-box strong {
+      color: var(--white);
+      font-style: normal;
+    }
+
+    /* ── Skills ── */
+    #skills {
+      border-top: 1px solid var(--border);
+    }
+
+    .skills-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-name {
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      color: var(--light);
+    }
+
+    .skill-bar-wrap {
+      width: 120px;
+      height: 1px;
+      background: var(--border);
+      position: relative;
+    }
+
+    .skill-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: var(--white);
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── Education ── */
+    #education {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+    }
+
+    .education-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .edu-detail {
+      border-left: 1px solid var(--border);
+      padding-left: 2.5rem;
+    }
+
+    .edu-year {
+      font-family: var(--serif);
+      font-size: 4rem;
+      color: rgba(255,255,255,0.08);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .edu-degree {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-school {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--white);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-loc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Contact ── */
+    #contact {
+      border-top: 1px solid var(--border);
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: end;
+    }
+
+    .contact-cta {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--white);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-cta span { color: var(--muted); font-style: italic; }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--light);
+      transition: padding-left 0.3s;
+    }
+
+    .contact-link:hover {
+      padding-left: 0.75rem;
+      color: var(--white);
+    }
+
+    .contact-link-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-link-value {
+      font-size: 0.9rem;
+    }
+
+    .contact-arrow {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ── Fade-in animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      section { padding: 5rem 2rem; }
+      #hero { padding: 0 2rem 5rem; }
+      .summary-inner,
+      .expertise-header,
+      .skills-inner,
+      .education-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+      .exp-meta { padding-left: 2rem; }
+      .industries { grid-template-columns: 1fr 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 0 1.5rem 4rem; }
+      .industries { grid-template-columns: 1fr; }
+      footer { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#hero" class="nav-logo">I. A. Hermawan</a>
+    <ul class="nav-links">
+      <li><a href="#summary">About</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-number">10+</div>
+
+    <div class="reveal">
+      <p class="hero-label">Product Management Lead &nbsp;/&nbsp; South Tangerang, Indonesia</p>
+      <h1 class="hero-name">
+        Ismail<br/>
+        <span>Aditya</span><br/>
+        Hermawan
+      </h1>
+      <p class="hero-title">Solution-driven digital product leader</p>
+    </div>
+
+    <p class="hero-scroll">Scroll</p>
+  </section>
+
+  <!-- Summary -->
+  <section id="summary">
+    <div class="summary-inner">
+      <div class="reveal">
+        <p class="section-label">01 — Profile</p>
+        <h2 class="section-title">Building Products<br/>That Scale</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="reveal">
+        <p class="summary-text">
+          Solution-driven Digital Product Management Lead with <strong>10+ years of experience</strong>
+          delivering and scaling products across
+          <strong>Telecommunications, Transportation &amp; Logistics, Omnichannel Commerce,
+          Software Development Consultancy, Education,</strong> and <strong>Oil &amp; Gas</strong> industries.
+        </p>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Industries Served</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100K+</div>
+            <div class="stat-label">Principals Supported / yr</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">~25%</div>
+            <div class="stat-label">Company Revenue Owned</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section id="expertise">
+    <div class="expertise-inner">
+      <div class="expertise-header">
+        <div class="reveal">
+          <p class="section-label">02 — Expertise</p>
+          <h2 class="section-title">Core<br/>Capabilities</h2>
+          <div class="section-rule"></div>
+        </div>
+        <div class="reveal">
+          <p style="font-size:0.9rem; color:#999; line-height:1.8;">
+            A cross-domain practitioner who bridges product vision, technical depth, and
+            business strategy — turning complex organisational challenges into
+            high-impact digital platforms.
+          </p>
+          <div class="expertise-tags" style="margin-top:1.5rem;">
+            <span class="tag">Product Discovery</span>
+            <span class="tag">Innovation Strategy</span>
+            <span class="tag">Product Lifecycle</span>
+            <span class="tag">Digital Transformation</span>
+            <span class="tag">Technical Acumen</span>
+            <span class="tag">Business Acumen</span>
+            <span class="tag">Cross-functional Leadership</span>
+            <span class="tag">Stakeholder Management</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="industries reveal">
+        <div class="industry-item">
+          <div class="industry-num">01</div>
+          <div class="industry-name">Telecommunications</div>
+        </div>
+        <div class="industry-item">
+          <div class="industry-num">02</div>
+          <div class="industry-name">Transportation &amp; Logistics</div>
+        </div>
+        <div class="industry-item">
+          <div class="industry-num">03</div>
+          <div class="industry-name">Omnichannel Commerce</div>
+        </div>
+        <div class="industry-item">
+          <div class="industry-num">04</div>
+          <div class="industry-name">Software Consultancy</div>
+        </div>
+        <div class="industry-item">
+          <div class="industry-num">05</div>
+          <div class="industry-name">Education Technology</div>
+        </div>
+        <div class="industry-item">
+          <div class="industry-num">06</div>
+          <div class="industry-name">Oil &amp; Gas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="experience-inner">
+      <div class="exp-header">
+        <div class="reveal">
+          <p class="section-label">03 — Experience</p>
+          <h2 class="section-title">Work<br/>History</h2>
+        </div>
+      </div>
+
+      <div class="timeline">
+
+        <!-- Role 1 -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">Jul 2025 — Present</p>
+            <p class="exp-company">INA Digital Edu<br/>(GovTech Edu)</p>
+            <span class="exp-current">Current</span>
+          </div>
+          <div>
+            <h3 class="exp-role">Group Product Manager</h3>
+            <ul class="exp-bullets">
+              <li>Enable nationwide coverage across <strong>34 provinces and thousands of schools</strong> by leading cross-functional teams and product roadmaps for Ministry of Education platforms.</li>
+              <li>Support <strong>100,000+ principal candidates annually</strong>, with <strong>30,000+ appointments executed digitally</strong>, improving scalability, consistency, and governance.</li>
+              <li>Served hundreds of thousands of education stakeholders through scalable and auditable digital systems translating national policies into operational platforms.</li>
+              <li>Improve financial transparency by digitising principal training programs funded by <strong>APBN, APBD, and other legal sources</strong> throughout 2025.</li>
+              <li>Strengthen regional education oversight by appointing thousands of <strong>School Supervisors</strong> nationwide.</li>
+              <li>Accelerate national education reform by partnering with <strong>Directors and senior ministry leaders</strong> as primary product advisor.</li>
+            </ul>
+            <div class="achievement-box">
+              <p>&#9733; &nbsp;<strong>Global Recognition:</strong> Contributed to the development of Ruang GTK, selected as a <strong>Top 10 Global EdTech Prize finalist</strong> at the World Schools Summit 2025 in Dubai.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">Mar 2022 — Jun 2025</p>
+            <p class="exp-company">Bluebirdgroup</p>
+          </div>
+          <div>
+            <h3 class="exp-role">Product Lead</h3>
+            <ul class="exp-bullets">
+              <li>Owned B2B platform strategy contributing <strong>~25% of total company revenue</strong>, serving hundreds of enterprise clients across mobility and logistics.</li>
+              <li>Drove <strong>15–20% YoY B2B revenue growth</strong> by aligning product, commercial, and operational strategies across high-volume enterprise segments.</li>
+              <li>Scaled enterprise billing and payment platforms processing <strong>millions of transactions annually</strong>, ensuring reliability, compliance, and financial accuracy.</li>
+              <li>Improved billing and finance efficiency by <strong>150–200%</strong> through end-to-end digitisation of invoicing, settlement, and reconciliation.</li>
+              <li>Unlocked <strong>~20% incremental corporate revenue</strong> by launching fintech-enabled payment products, including Trip Vouchers (~5% of B2B value).</li>
+              <li>Led a product organisation of <strong>multiple cross-functional squads</strong> (PMs, engineers, designers, data), defining product vision, platform architecture, and execution cadence.</li>
+              <li>Advised <strong>Directors and the Board</strong> on product portfolio performance, platform economics, risk posture, and long-term enterprise growth.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">Oct — Dec 2021</p>
+            <p class="exp-company">Icehouse Corp</p>
+          </div>
+          <div>
+            <h3 class="exp-role">Senior Consultant &amp; Business Analyst</h3>
+            <ul class="exp-bullets">
+              <li>Delivered end-to-end IT and digital transformation solutions across <strong>health digital, tech commerce, financial services, and enterprise platforms</strong>.</li>
+              <li>Defined digital project roadmaps and delivery plans for <strong>IDR 500M – 1.5Bio initiatives</strong>, aligning scope, timelines, and client expectations.</li>
+              <li>Led <strong>10–20 member cross-functional teams</strong> and partnered with C-level executives for high-quality, on-time delivery.</li>
+              <li>Generated <strong>IDR 600+ million in new revenue</strong> by acquiring and delivering new client projects in 2022.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">Jul — Sep 2021</p>
+            <p class="exp-company">Elnusa Petrofin</p>
+          </div>
+          <div>
+            <h3 class="exp-role">IT Project Manager</h3>
+            <ul class="exp-bullets">
+              <li>Led IT project delivery using <strong>Agile methodologies</strong>, overseeing end-to-end planning, execution, monitoring, and executive reporting.</li>
+              <li>Accelerated project delivery <strong>1.5× faster than planned</strong> while achieving <strong>~50% cost reduction</strong> through optimised scope and iterative execution.</li>
+              <li>Coached cross-functional teams to improve delivery maturity, accountability, and performance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 5 -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">Jul 2019 — Jun 2021</p>
+            <p class="exp-company">CT Corp Digital<br/>(Allo Fresh)</p>
+          </div>
+          <div>
+            <h3 class="exp-role">Business Analyst</h3>
+            <ul class="exp-bullets">
+              <li>Defined product vision and managed end-to-end requirements and backlog for the <strong>Allo Fresh omni-commerce platform</strong>, from ideation through launch.</li>
+              <li>Acted as <strong>Product Owner and team lead</strong>, accountable for roadmap execution, issue resolution, and continuous improvement.</li>
+              <li>Partnered with <strong>Commercial, Operations, and Product Directors</strong>, aligning system design with business objectives.</li>
+              <li>Drove measurable growth: acquired <strong>20,000+ online users</strong> and generated <strong>IDR 1B+ monthly GMV</strong> within the first quarter post-launch.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 6 -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">Jan — May 2019</p>
+            <p class="exp-company">Axis<br/>(XL Axiata Group)</p>
+          </div>
+          <div>
+            <h3 class="exp-role">Business Analyst</h3>
+            <ul class="exp-bullets">
+              <li>Defined and executed technology solutions for <strong>AXIS digital products</strong>, including AXISnet App and mobile internet packages.</li>
+              <li>Managed end-to-end product development, coordinating cross-functional stakeholders for timely, market-aligned delivery.</li>
+              <li>AXIS digital products contributed <strong>~50% of total daily revenue</strong> during Q1–Q2 2019.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 7 -->
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">Jul 2015 — Dec 2018</p>
+            <p class="exp-company">XL Axiata</p>
+          </div>
+          <div>
+            <h3 class="exp-role">Business Development Executive</h3>
+            <ul class="exp-bullets">
+              <li>Led end-to-end execution of <strong>XL 4G LTE mobile subscriber migration</strong>, coordinating IT, business units, and corporate teams.</li>
+              <li>Converted <strong>3.4 million non-4G subscribers to 4G</strong> between 2016–2018, while reducing low-profit 4G active customers by <strong>50% YoY</strong>.</li>
+              <li>Managed program execution and campaigns to drive adoption and customer engagement across XL Digital Community.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="skills-inner">
+      <div class="reveal">
+        <p class="section-label">04 — Skills</p>
+        <h2 class="section-title">Professional<br/>Skills</h2>
+        <div class="section-rule"></div>
+        <p style="font-size:0.85rem; color:#888; line-height:1.8;">
+          Across a decade of leading products, these core competencies have been consistently applied and refined in high-stakes environments.
+        </p>
+      </div>
+      <div class="skills-list reveal">
+        <div class="skill-row">
+          <span class="skill-name">Product Vision &amp; Strategy</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="96%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Product Life Cycle Management</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Product Planning &amp; Road Mapping</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Stakeholder Management</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="92%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Cross-functional Team Leadership</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="93%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Agile Development</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Analytical Skills &amp; Business Insights</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Coaching &amp; Mentoring</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Effective Communication</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:0" data-width="92%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="education-inner">
+      <div class="reveal">
+        <p class="section-label">05 — Education</p>
+        <h2 class="section-title">Academic<br/>Background</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="edu-detail reveal">
+        <div class="edu-year">2015</div>
+        <p class="edu-degree">B.E — Bachelor of Engineering</p>
+        <h3 class="edu-school">Telkom University</h3>
+        <p class="edu-loc">Bandung, Indonesia &nbsp;&bull;&nbsp; 2011 – 2015</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="reveal">
+        <p class="section-label">06 — Contact</p>
+        <h2 class="contact-cta">
+          Let's build something<br/>
+          <span>meaningful together.</span>
+        </h2>
+      </div>
+      <div class="contact-links reveal">
+        <a class="contact-link" href="mailto:ismailadityahermawan@gmail.com">
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">ismailadityahermawan@gmail.com</div>
+          </div>
+          <span class="contact-arrow">&#8599;</span>
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/ismailaditya297/" target="_blank" rel="noopener">
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/ismailaditya297</div>
+          </div>
+          <span class="contact-arrow">&#8599;</span>
+        </a>
+        <a class="contact-link" href="tel:+6287781155259">
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-value">+62 8778 1155 259</div>
+          </div>
+          <span class="contact-arrow">&#8599;</span>
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <div>
+            <div class="contact-link-label">Location</div>
+            <div class="contact-link-value">South Tangerang, Banten, Indonesia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Ismail Aditya Hermawan &mdash; Product Management Lead</p>
+    <p>South Tangerang &bull; Indonesia &bull; 2025</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Animate skill bars
+          entry.target.querySelectorAll('.skill-bar').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+          });
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav link highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + current ? '#ffffff' : '';
+      });
+    });
+  </script>
+</body>
+</html>
